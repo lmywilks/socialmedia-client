@@ -62,7 +62,7 @@ class Comments extends Component {
                     );
                 })}
             </Grid>
-        )
+        );
     }
 }
 

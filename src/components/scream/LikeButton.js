@@ -41,16 +41,14 @@ export class LikeButton extends Component {
                     <FavoriteBorder color="primary" />
                 </MyButton>
             </Link>
+        ) : this.likedScream() ? (
+            <MyButton tip="Undo like" onClick={this.unlikeScream}>
+                <FavoriteIcon color="primary" />
+            </MyButton>
         ) : (
-            this.likedScream() ? (
-                <MyButton tip="Undo like" onClick={this.unlikeScream}>
-                    <FavoriteIcon color="primary" />
-                </MyButton>
-            ) : (
-                <MyButton tip="Like" onClick={this.likeScream}>
-                    <FavoriteBorder color="primary" />
-                </MyButton>
-            )
+            <MyButton tip="Like" onClick={this.likeScream}>
+                <FavoriteBorder color="primary" />
+            </MyButton>
         );
 
         return likeButton;

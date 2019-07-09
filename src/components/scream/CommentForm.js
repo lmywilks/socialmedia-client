@@ -44,7 +44,7 @@ class CommentForm extends Component {
 
     render() {
         const { classes, authenticated } = this.props;
-        const errors = this.state.errors;
+        const { errors } = this.state;
 
         const commentFormMarkup = authenticated ? (
             <Grid item sm={12} style={{ textAlign: 'center' }}>
@@ -58,8 +58,6 @@ class CommentForm extends Component {
                         value={this.state.body}
                         onChange={this.handleChange}
                         fullWidth
-                        multiline
-                        row="3"
                         className={classes.textField} />
                     <Button 
                         type="submit"
