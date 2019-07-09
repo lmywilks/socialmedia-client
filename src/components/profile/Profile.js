@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 
 // Components
 import EditDetails from './EditDetails';
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 // MUI stuff
 import Button from '@material-ui/core/Button';
@@ -23,81 +23,13 @@ import KeyboardReturn from '@material-ui/icons/KeyboardReturn';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { logoutUser, uploadImage } from '../redux/actions/userActions';
+import { logoutUser, uploadImage } from '../../redux/actions/userActions';
 
 const styles = (theme) => ({
-    paper: {
-        padding: 20
-    },
-    profile: {
-        '& .image-wrapper': {
-            textAlign: 'center',
-            position: 'relative',
-            '& button': {
-                position: 'absolute',
-                top: '80%',
-                left: '70%'
-            }
-        },
-        '& .profile-image': {
-            width: 200,
-            height: 200,
-            objectFit: 'cover',
-            maxWidth: '100%',
-            borderRadius: '50%'
-        },
-        '& .profile-details': {
-            textAlign: 'center',
-            '& span, svg': {
-                verticalAlign: 'middle'
-            },
-            '& a':  {
-                color: theme.palette.primary.main
-            }
-        },
-        '& hr': {
-            border: 'none',
-            margin: '0 0 10px 0'
-        },
-        '& svg.button': {
-            '&:hover': {
-                cursor: 'pointer'
-            }
-        }
-    },
-    buttons: {
-        textAlign: 'center',
-        '& a': {
-            margin: '20px 10px'
-        }
-    },
-    form: {
-        textAlign: 'center'
-    },
-    image: {
-        margin: '20px auto 20px auto'
-    },
-    pageTitle: {
-        margin: '10px auto 10px auto'
-    },
-    textField: {
-        margin: '10px auto 10px auto'
-    },
-    button: {
-        marginTop: 20,
-        position: 'relative'
-    },
-    customError: {
-        color: 'red',
-        fontSize: '0.8rem',
-        marginTop: 10
-    },
-    progress: {
-        position: 'absolute'
-    }
+    ...theme
 });
 
-export class Profile extends Component {
+class Profile extends Component {
     handleImageChange = (event) => {
         const image = event.target.files[0];
 
@@ -197,6 +129,13 @@ export class Profile extends Component {
     }
 }
 
+Profile.propTypes = {
+    user        : PropTypes.object.isRequired,
+    classes     : PropTypes.object.isRequired,
+    logoutUser  : PropTypes.func.isRequired,
+    uploadImage : PropTypes.func.isRequired
+};
+
 const mapStateToProps = (state) => ({
     user: state.user
 });
@@ -204,13 +143,6 @@ const mapStateToProps = (state) => ({
 const mapActionsToProps = {
     logoutUser,
     uploadImage
-}
-
-Profile.propTypes = {
-    user        : PropTypes.object.isRequired,
-    classes     : PropTypes.object.isRequired,
-    logoutUser  : PropTypes.func.isRequired,
-    uploadImage : PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Profile));

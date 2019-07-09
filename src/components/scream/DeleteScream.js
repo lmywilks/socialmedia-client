@@ -3,7 +3,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 
 // Components
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 // MUI stuff
 import Button from '@material-ui/core/Button';
@@ -16,7 +16,7 @@ import DeleteOutline from '@material-ui/icons/DeleteOutline';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { deleteScream } from '../redux/actions/dataActions';
+import { deleteScream } from '../../redux/actions/dataActions';
 
 const styles = {
     deleteButton: {
@@ -26,7 +26,7 @@ const styles = {
     }
 };
 
-export class DeleteScream extends Component {
+class DeleteScream extends Component {
     state = {
         open: false
     };
@@ -49,7 +49,8 @@ export class DeleteScream extends Component {
 
         return (
             <Fragment>
-                <MyButton tip="Delete Scream"
+                <MyButton 
+                    tip="Delete Scream"
                     onClick={this.handleOpen}
                     btnClassName={classes.deleteButton}>
                         <DeleteOutline color="secondary" />
@@ -66,7 +67,7 @@ export class DeleteScream extends Component {
                         </DialogActions>
                 </Dialog>
             </Fragment>
-        )
+        );
     }
 }
 

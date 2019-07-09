@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react';
 
 // MUI stuff
 import Tooltip from '@material-ui/core/Tooltip';

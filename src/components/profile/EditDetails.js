@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 // Components
-import MyButton from '../util/MyButton';
+import MyButton from '../../util/MyButton';
 
 // MUI stuff
 import Button from '@material-ui/core/Button';
@@ -18,84 +18,12 @@ import EditIcon from '@material-ui/icons/Edit';
 
 // Redux stuff
 import { connect } from 'react-redux';
-import { editUserDetails } from '../redux/actions/userActions';
-
-// const styles = (theme) => ({
-//     ...theme,
-//     button: {
-//         float: 'right'
-//     }
-// });
+import { editUserDetails } from '../../redux/actions/userActions';
 
 const styles = (theme) => ({
-    paper: {
-        padding: 20
-    },
-    profile: {
-        '& .image-wrapper': {
-            textAlign: 'center',
-            position: 'relative',
-            '& button': {
-                position: 'absolute',
-                top: '80%',
-                left: '70%'
-            }
-        },
-        '& .profile-image': {
-            width: 200,
-            height: 200,
-            objectFit: 'cover',
-            maxWidth: '100%',
-            borderRadius: '50%'
-        },
-        '& .profile-details': {
-            textAlign: 'center',
-            '& span, svg': {
-                verticalAlign: 'middle'
-            },
-            '& a':  {
-                color: theme.palette.primary.main
-            }
-        },
-        '& hr': {
-            border: 'none',
-            margin: '0 0 10px 0'
-        },
-        '& svg.button': {
-            '&:hover': {
-                cursor: 'pointer'
-            }
-        }
-    },
-    buttons: {
-        textAlign: 'center',
-        '& a': {
-            margin: '20px 10px'
-        }
-    },
-    form: {
-        textAlign: 'center'
-    },
-    image: {
-        margin: '20px auto 20px auto'
-    },
-    pageTitle: {
-        margin: '10px auto 10px auto'
-    },
-    textField: {
-        margin: '10px auto 10px auto'
-    },
+    ...theme,
     button: {
-        position: 'relative',
-        float: 'right'
-    },
-    customError: {
-        color: 'red',
-        fontSize: '0.8rem',
-        marginTop: 10
-    },
-    progress: {
-        position: 'absolute'
+      float: 'right'
     }
 });
 
@@ -105,6 +33,14 @@ class EditDetails extends Component {
         website  : '',
         location : '',
         open     : false
+    };
+
+    mapUserDetailsToState = (credentials) => {
+        this.setState({
+            bio      : credentials.bio ? credentials.bio : '',
+            location : credentials.location ? credentials.location : '',
+            website  : credentials.website ? credentials.website : '',
+        });
     };
 
     handleOpen = () => {
@@ -120,14 +56,6 @@ class EditDetails extends Component {
         const { credentials } = this.props;
 
         this.mapUserDetailsToState(credentials);
-    };
-
-    mapUserDetailsToState = (credentials) => {
-        this.setState({
-            bio      : credentials.bio ? credentials.bio : '',
-            location : credentials.location ? credentials.location : '',
-            website  : credentials.website ? credentials.website : '',
-        });
     };
 
     handleChange = (event) => {

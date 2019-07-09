@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import withStyles from '@material-ui/core/styles/withStyles'
+import React, { Component } from 'react';
+import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 import AppIcon from '../images/icon.png';
 import { Link } from 'react-router-dom';
@@ -15,34 +15,11 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
 import { signupUser } from '../redux/actions/userActions';
 
-const styles = {
-    form: {
-        textAlign: 'center'
-    },
-    image: {
-        margin: '20px auto 20px auto'
-    },
-    pageTitle: {
-        margin: '10px auto 10px auto'
-    },
-    textField: {
-        margin: '10px auto 10px auto'
-    },
-    button: {
-        marginTop: 20,
-        position: 'relative'
-    },
-    customError: {
-        color: 'red',
-        fontSize: '0.8rem',
-        marginTop: 10
-    },
-    progress: {
-        position: 'absolute'
-    }
-};
+const styles = (theme) => ({
+    ...theme
+});
 
-export class signup extends Component {
+class signup extends Component {
     constructor() {
         super();
         this.state = {
@@ -53,6 +30,12 @@ export class signup extends Component {
             errors          : {}
         };
     }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.UI.errors) {
+            this.setState({ errors: nextProps.UI.errors });
+        }
+    };
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -67,12 +50,6 @@ export class signup extends Component {
         this.props.signupUser(newUserData, this.props.history);
     };
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.UI.errors) {
-            this.setState({ errors: nextProps.UI.errors });
-        }
-    }
-
     handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -85,7 +62,7 @@ export class signup extends Component {
 
         return (
             <Grid container className={classes.form}>
-                <Grid item sm></Grid>
+                <Grid item sm />
                 <Grid item sm>
                     <img src={AppIcon} alt="monkey" className={classes.image}/>
                     <Typography variant="h2" className={classes.pageTitle}>Signup</Typography>
@@ -155,9 +132,9 @@ export class signup extends Component {
                         <small>Already have an account ? login <Link to="/login">here</Link></small>
                     </form>
                 </Grid>
-                <Grid item sm></Grid>
+                <Grid item sm />
             </Grid>
-        )
+        );
     }
 }
 

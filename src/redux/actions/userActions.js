@@ -6,6 +6,7 @@ import {
     SET_UNAUTHENTICATED,
     LOADING_USER 
 } from '../types';
+
 import axios from 'axios';
 
 export const loginUser = (userData, history) => (dispatch) => {
@@ -73,7 +74,8 @@ export const getUserData = () => (dispatch) => {
 export const uploadImage = (formData) => (dispatch) => {
     dispatch({ type: LOADING_USER });
 
-    axios.post('/user/image', formData)
+    axios
+        .post('/user/image', formData)
         .then(() => {
             dispatch(getUserData());
         })
@@ -83,7 +85,8 @@ export const uploadImage = (formData) => (dispatch) => {
 export const editUserDetails = (userDetail) => (dispatch) => {
     dispatch({ type: LOADING_USER });
 
-    axios.post('/user', userDetail)
+    axios
+        .post('/user', userDetail)
         .then(() => {
             dispatch(getUserData());
         })
@@ -91,7 +94,7 @@ export const editUserDetails = (userDetail) => (dispatch) => {
 };
 
 const setAuthorizationHeader = (token) => {
-    const FBIdToken = `Bearer ${ token }`
+    const FBIdToken = `Bearer ${ token }`;
     localStorage.setItem('FBIdToken', FBIdToken);
     
     axios.defaults.headers.common['Authorization'] = FBIdToken;
