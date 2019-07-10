@@ -1,6 +1,6 @@
 {
   "name": "socialmedia-client",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.9.2",
@@ -37,5 +37,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://us-east1-socialmedia-ec698.cloudfunctions.net/api"
+  "proxy": "https://us-east1-social-app-58c7f.cloudfunctions.net/api"
 }
